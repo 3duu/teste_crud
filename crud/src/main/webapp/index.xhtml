@@ -1,39 +1,52 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <title>CRUD JSF</title>
-    </h:head>
-    <h:body>
-        <h:form id="formulario">
-            <p:toolbar>
-                <p:toolbarGroup>
-                    <p:commandButton value="Adicionar" action="#{manageBean.adicionar()}" update=":formulario"/>
-                </p:toolbarGroup>
-            </p:toolbar>
-            <p:fieldset legend="Carros">
-                 <p:panelGrid columns="2">
-                     <h:outputLabel value="Modelo" />
-                     <p:inputText id="modelo" value="#{manageBean.carro.modelo}"></p:inputText>
-                     <h:outputLabel value="Fabricante" />
-                     <p:inputText id="fabricante" value="#{manageBean.carro.fabricante}"></p:inputText>
-                     <h:outputLabel value="Ano" />
-                     <p:inputMask mask="9999" id="ano" value="#{manageBean.carro.ano}"></p:inputMask>
-                 </p:panelGrid>
-                <p:dataTable value="#{manageBean.carros}" var="carro">
-                    <p:column headerText="Modelo">
-                        <h:outputText value="#{carro.modelo}"></h:outputText>
-                    </p:column>
-                    <p:column headerText="Fabricante">
-                        <h:outputText value="#{carro.fabricante}"></h:outputText>
-                    </p:column>
-                    <p:column headerText="Ano">
-                        <h:outputText value="#{carro.ano}"></h:outputText>
-                    </p:column>
-                </p:dataTable>
-            </p:fieldset>
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://java.sun.com/jsf/facelets">
+<head>
+    <title>Teste CRUD</title>
+</head>
+    
+<body>
+    <h3>Lista de Clientes</h3>
+    <h:form rendered="#{not empty manageBean.list}">
+        <h:dataTable value="#{manageBean.list}" var="item">
+            <h:column><f:facet name="header">ID</f:facet>#{item.id}</h:column>
+            <h:column><f:facet name="header">Name</f:facet>#{item.name}</h:column>
+            <h:column>
+                <h:commandButton value="edit" action="#{manageBean.edit(item)}" />
+            </h:column>
+            <h:column>
+                <h:commandButton value="delete" action="#{manageBean.delete(item)}" />
+            </h:column>
+        </h:dataTable>
+    </h:form>
+    
+    <h:panelGroup rendered="#{empty manageBean.list}">
+        <p>Sem clientes! Favor adicionar.</p>
+    </h:panelGroup>
+    
+    <h:panelGroup rendered="#{!manageBean.editing}">
+        <h3>Adicionar Cliente</h3>
+        <h:form>
+            <p>Name: <h:inputText value="#{manageBean.item.name}" /></p>
+            <p>
+                <h:commandButton value="add" action="#{manageBean.add}" />
+                <h:commandButton value="reset" action="#{manageBean.resetAdd}" />
+            </p>
         </h:form>
-    </h:body>
+    </h:panelGroup>
+    
+    <h:panelGroup rendered="#{manageBean.editing}">
+        <h3>Editar cliente #{manageBean.item.id}</h3>
+        <h:form>
+            <p>Name: <h:inputText value="#{manageBean.item.name}" /></p>
+            <p>
+                <h:commandButton value="save" action="#{manageBean.saveEdit}" />
+                <h:commandButton value="cancel" action="#{manageBean.cancelEdit}" />
+            </p>
+        </h:form>
+    </h:panelGroup>
+   
+</body>
 </html>

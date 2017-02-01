@@ -7,6 +7,10 @@
   <name>Simple CRUD</name>
   
   
+  <properties>
+  	<!-- Hibernate / JPA -->
+		<hibernate.version>4.2.1.Final</hibernate.version>
+  </properties>  
 	<dependencies>
 	  <dependency>
 	      <groupId>com.sun.faces</groupId>
@@ -23,23 +27,38 @@
 	      <artifactId>javax.servlet-api</artifactId>
 	      <version>3.0.1</version>
 	  </dependency>
+
+	
+	<!-- Hibernate -->
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-entitymanager</artifactId>
+		<version>${hibernate.version}</version>
+	</dependency>
+  
+  <dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>4.3.0.Final</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>4.3.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.1-api</artifactId>
+			<version>1.0.0.Final</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.microsoft.sqlserver</groupId>
+		    <artifactId>sqljdbc4</artifactId>
+		    <version>4.0</version>
+		</dependency>
 	  
-	  <dependency>
-		  <groupId>javax.persistence</groupId>
-		  <artifactId>persistence-api</artifactId>
-		  <version>1.0.2</version>
-	  </dependency>
-	  <dependency>
-		  <groupId>org.hibernate</groupId>
-		  <artifactId>hibernate-entitymanager</artifactId>
-		  <version>4.3.6.Final</version>
-		  <exclusions>
-		    <exclusion>
-		      <groupId>org.hibernate.javax.persistence</groupId>
-		      <artifactId>hibernate-jpa-2.1-api</artifactId>
-		    </exclusion>
-		  </exclusions>
-	   </dependency>
 	   
 	   <dependency>
 		    <groupId>com.microsoft.sqlserver</groupId>
