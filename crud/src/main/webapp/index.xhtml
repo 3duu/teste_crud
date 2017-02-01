@@ -32,7 +32,7 @@
         <h3>Adicionar Cliente</h3>
         <h:form>
             <p>Nome: <h:inputText value="#{manageBean.item.name}" /></p>
-            <p>CPF: <h:inputText value="#{manageBean.item.cpf}" a:maxlength="11"/></p>
+            <p>CPF: <h:inputText  value="#{manageBean.item.cpf}" a:maxlength="11" onkeypress="if(event.which &lt; 48 || event.which &gt; 57 ) if(event.which != 8) return false;"/></p>
             <p>
                 <h:commandButton value="add" action="#{manageBean.add}" />
                 <h:commandButton value="reset" action="#{manageBean.resetAdd}" />
@@ -44,7 +44,7 @@
         <h3>Editar cliente #{manageBean.item.id}</h3>
         <h:form>
             <p>Nome: <h:inputText value="#{manageBean.item.name}" /></p>
-            <p>CPF: <h:inputText value="#{manageBean.item.cpf}" /></p>
+            <p>CPF: <h:inputText value="#{manageBean.item.cpf}" a:maxlength="11" onkeypress="if(event.which &lt; 48 || event.which &gt; 57 ) if(event.which != 8) return false;" /></p>
             <p>
                 <h:commandButton value="save" action="#{manageBean.saveEdit}" />
                 <h:commandButton value="cancel" action="#{manageBean.cancelEdit}" />

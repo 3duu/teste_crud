@@ -49,7 +49,6 @@ public class ManageBean implements Serializable {
     
     public void edit(Costumer item) {
         beforeEditItem = new Costumer(item.getId(), item.getName(), item.getCpf());
-        dao.edit(item);
         this.item = item;
         editing = true;
     }
@@ -61,6 +60,7 @@ public class ManageBean implements Serializable {
     }
     
     public void saveEdit() {
+    	dao.edit(item);
         this.item = new Costumer();
         editing = false;
     }
