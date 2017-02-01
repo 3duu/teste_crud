@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://java.sun.com/jsf/facelets">
+      xmlns:p="http://java.sun.com/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 <head>
     <title>Teste CRUD</title>
 </head>
@@ -12,7 +13,8 @@
     <h:form rendered="#{not empty manageBean.list}">
         <h:dataTable value="#{manageBean.list}" var="item">
             <h:column><f:facet name="header">ID</f:facet>#{item.id}</h:column>
-            <h:column><f:facet name="header">Name</f:facet>#{item.name}</h:column>
+            <h:column><f:facet name="header">Nome</f:facet>#{item.name}</h:column>
+            <h:column><f:facet name="header">CPF</f:facet>#{item.cpf}</h:column>
             <h:column>
                 <h:commandButton value="edit" action="#{manageBean.edit(item)}" />
             </h:column>
@@ -29,7 +31,8 @@
     <h:panelGroup rendered="#{!manageBean.editing}">
         <h3>Adicionar Cliente</h3>
         <h:form>
-            <p>Name: <h:inputText value="#{manageBean.item.name}" /></p>
+            <p>Nome: <h:inputText value="#{manageBean.item.name}" /></p>
+            <p>CPF: <h:inputText value="#{manageBean.item.cpf}" a:maxlength="11"/></p>
             <p>
                 <h:commandButton value="add" action="#{manageBean.add}" />
                 <h:commandButton value="reset" action="#{manageBean.resetAdd}" />
@@ -40,7 +43,8 @@
     <h:panelGroup rendered="#{manageBean.editing}">
         <h3>Editar cliente #{manageBean.item.id}</h3>
         <h:form>
-            <p>Name: <h:inputText value="#{manageBean.item.name}" /></p>
+            <p>Nome: <h:inputText value="#{manageBean.item.name}" /></p>
+            <p>CPF: <h:inputText value="#{manageBean.item.cpf}" /></p>
             <p>
                 <h:commandButton value="save" action="#{manageBean.saveEdit}" />
                 <h:commandButton value="cancel" action="#{manageBean.cancelEdit}" />

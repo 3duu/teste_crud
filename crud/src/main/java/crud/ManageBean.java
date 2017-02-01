@@ -1,34 +1,45 @@
 package crud;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import crud.model.Costumer;
+
+import javax.annotation.PostConstruct;
+
 @SessionScoped
 @ManagedBean
-public class ManageBean {
+public class ManageBean implements Serializable {
+    private static final long serialVersionUID = 1L;
 	
-	private Costumer item;
+	private Costumer item = new Costumer();
 	private Costumer beforeEditItem;
     private List<Costumer> list;
     
     //DAO
-    private CostumerDAO costumerDAO = new CostumerDAO();
+    private CostumerDAO dao;
 
 
     private boolean editing;
     
-    //@PostConstruct
+    @PostConstruct
     public void init() {
-        list = new ArrayList<Costumer>();
+    	dao = new CostumerDAO();
+        list = dao.list();
+        
+        if(list == null)
+        	list = new ArrayList<Costumer>();
     }
     
     public void add() {
         // DAO save the add
-        item.setId(list.isEmpty() ? 1 : list.get(list.size() - 1).getId() + 1);
+        //item.setId(list.isEmpty() ? 1 : list.get(list.size() - 1).getId() + 1);
         list.add(item);
+        dao.create(item);
         item = new Costumer();
     }
     
@@ -37,14 +48,15 @@ public class ManageBean {
     }
     
     public void edit(Costumer item) {
-        beforeEditItem = new Costumer(item.getId(), item.geName(), item.getCpf());
+        beforeEditItem = new Costumer(item.getId(), item.getName(), item.getCpf());
+        dao.edit(item);
         this.item = item;
         editing = true;
     }
     
     public void cancelEdit() {
         //this.item.restore(beforeEditItem);
-        //this.item = new Student();
+        this.item = new Costumer();
         editing = false;
     }
     
@@ -55,6 +67,7 @@ public class ManageBean {
     
     public void delete(Costumer item) throws IOException {
         list.remove(item);
+        dao.remove(item);
     }
     
     public List<Costumer> getList() {
