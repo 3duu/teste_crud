@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedBean;//javax.faces.bean.ManagedBean;
+
 import javax.faces.bean.SessionScoped;
 
 import crud.model.Costumer;
@@ -76,6 +77,10 @@ public class ManageBean implements Serializable {
     
     public Costumer getItem() {
         return this.item;
+    }
+    
+    public void setItem(Costumer item) {
+        this.item = item;
     }
     
     public boolean isEditing() {
