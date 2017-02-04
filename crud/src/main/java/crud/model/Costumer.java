@@ -54,7 +54,7 @@ public class Costumer {
         return cpf;
     }
  
-    public void setCpf(String dept) {
-        this.cpf = dept;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 }
