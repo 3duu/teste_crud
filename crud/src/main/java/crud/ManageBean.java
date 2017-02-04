@@ -4,32 +4,32 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.faces.bean.ManagedBean;//javax.faces.bean.ManagedBean;
-
+import  javax.faces.bean.ManagedBean;//javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import crud.model.Costumer;
 
 import javax.annotation.PostConstruct;
 
+@SuppressWarnings("restriction")
 @SessionScoped
 @ManagedBean(name = "manageBean")
 public class ManageBean implements Serializable {
     private static final long serialVersionUID = 1L;
 	
-	private Costumer item = new Costumer();
+	private Costumer item;
 	private Costumer beforeEditItem;
     private List<Costumer> list;
     
     //DAO
     private CostumerDAO dao;
-
-
+    
     private boolean editing;
     
     @PostConstruct
     public void init() {
     	dao = new CostumerDAO();
+    	item = new Costumer();
         list = dao.list();
         
         if(list == null)
@@ -37,8 +37,6 @@ public class ManageBean implements Serializable {
     }
     
     public void add() {
-        // DAO save the add
-        //item.setId(list.isEmpty() ? 1 : list.get(list.size() - 1).getId() + 1);
         list.add(item);
         dao.create(item);
         item = new Costumer();
