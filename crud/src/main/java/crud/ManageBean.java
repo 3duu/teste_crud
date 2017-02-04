@@ -12,7 +12,7 @@ import crud.model.Costumer;
 import javax.annotation.PostConstruct;
 
 @SessionScoped
-@ManagedBean
+@ManagedBean(name = "manageBean")
 public class ManageBean implements Serializable {
     private static final long serialVersionUID = 1L;
 	
