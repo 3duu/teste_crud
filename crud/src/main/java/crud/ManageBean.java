@@ -6,14 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 import  javax.faces.bean.ManagedBean;//javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-
 import crud.model.Costumer;
-
 import javax.annotation.PostConstruct;
 
+@ManagedBean(name = "manageBean")
 @SuppressWarnings("restriction")
 @SessionScoped
-@ManagedBean(name = "manageBean")
 public class ManageBean implements Serializable {
     private static final long serialVersionUID = 1L;
 	

@@ -5,18 +5,19 @@
              http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
     version="2.0">
  
-    <persistence-unit name="CostumerPU">
+    <persistence-unit name="CostumerPU"  transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <class>crud.model.Costumer</class>
         <properties>
-            <property name="hibernate.connection.url" value="jdbc:sqlserver://192.168.1.8;databaseName=teste_crud;" />
-            <property name="hibernate.connection.driver_class" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
-            <property name="hibernate.connection.username" value="sa" />
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/teste_crud" />
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+            <property name="hibernate.connection.username" value="root" />
             <property name="hibernate.connection.password" value="nemesis164" />
             <property name="hibernate.archive.autodetection" value="class" />
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.format_sql" value="true" />
-            <property name="hbm2ddl.auto" value="update" />
-            <property name="packagesToScan" value="crud.model" />
+            <!--  propriedades do hibernate -->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
         </properties>
     </persistence-unit>
 </persistence>
